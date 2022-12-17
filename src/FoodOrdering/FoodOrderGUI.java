@@ -28,41 +28,48 @@ public class FoodOrderGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 double total = 0;
-                if(cPizza.isSelected()){
-                    total += 100;
-                }
-                if(cBurger.isSelected()){
-                    total += 80;
-                }
-                if(cFries.isSelected()){
-                    total += 65;
-                }
-                if(cSoftDrinks.isSelected()){
-                    total += 55;
-                }
-                if(cTea.isSelected()){
-                    total += 50;
-                }
-                if(cSundae.isSelected()){
-                    total += 40;
-                }
-                if(rbNone.isSelected()){
-                    total -= 0;
-                }
-                if(rb5.isSelected()){
-                    double temp = total * .05;
-                    total -= temp;
-                }
-                if(rb10.isSelected()){
-                    double temp = total * .10;
-                    total -= temp;
-                }
-                if(rb15.isSelected()){
-                    double temp = total * .15;
-                    total -= temp;
-                }
 
-                JOptionPane.showMessageDialog(null, String.format("The total price is %.2f", total));
+                try {
+                    if (cPizza.isSelected()) {
+                        total += 100;
+                    }
+                    if (cBurger.isSelected()) {
+                        total += 80;
+                    }
+                    if (cFries.isSelected()) {
+                        total += 65;
+                    }
+                    if (cSoftDrinks.isSelected()) {
+                        total += 55;
+                    }
+                    if (cTea.isSelected()) {
+                        total += 50;
+                    }
+                    if (cSundae.isSelected()) {
+                        total += 40;
+                    }
+                    if (rbNone.isSelected()) {
+                        total -= 0;
+                    }
+                    if (rb5.isSelected()) {
+                        double temp = total * .05;
+                        total -= temp;
+                    }
+                    if (rb10.isSelected()) {
+                        double temp = total * .10;
+                        total -= temp;
+                    }
+                    if (rb15.isSelected()) {
+                        double temp = total * .15;
+                        total -= temp;
+                    }
+                    if(total == 0){
+                        throw new IllegalArgumentException();
+                    }
+                    JOptionPane.showMessageDialog(null, String.format("The total price is %.2f", total));
+                }catch(IllegalArgumentException a){
+                    JOptionPane.showMessageDialog(null, "No order selected!");
+                }
             }
         });
 
