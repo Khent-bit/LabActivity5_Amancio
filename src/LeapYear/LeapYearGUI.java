@@ -20,14 +20,24 @@ public class LeapYearGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int temp = 0;
-                temp = Integer.parseInt(tfYear.getText());
+                try {
+                    temp = Integer.parseInt(tfYear.getText());
+                    if(temp < 0){
+                        throw new ArithmeticException();
+                    }
+                    if(temp % 1 != 0){
+                        throw new IllegalArgumentException();
+                    }
 
-                if(temp % 400 == 0){
-                    JOptionPane.showMessageDialog(null,"Leap year");
-                }else if(temp % 4 == 0 && temp % 100 != 0){
-                    JOptionPane.showMessageDialog(null, "Leap year");
-                }else{
-                    JOptionPane.showMessageDialog(null, "Not a leap year");
+                    if(temp % 400 == 0){
+                        JOptionPane.showMessageDialog(null,"Leap year");
+                    }else if(temp % 4 == 0 && temp % 100 != 0){
+                        JOptionPane.showMessageDialog(null, "Leap year");
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Not a leap year");
+                    }
+                }catch (Exception a){
+                    JOptionPane.showMessageDialog(null, "Invalid input");
                 }
             }
         });
