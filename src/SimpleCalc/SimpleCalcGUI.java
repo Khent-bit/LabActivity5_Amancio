@@ -24,13 +24,22 @@ public class SimpleCalcGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 double num1 = 0, num2;
 
-                num1 = Double.parseDouble(tfNumber1.getText());
-                num2 = Double.parseDouble(tfNumber2.getText());
+                try {
+                    num1 = Double.parseDouble(tfNumber1.getText());
+                    num2 = Double.parseDouble(tfNumber2.getText());
 
-                int sign = cbOperations.getSelectedIndex();
+                    int sign = cbOperations.getSelectedIndex();
 
-                double res = (new double[]{num1 + num2, num1 - num2, num1 * num2, num1 / num2})[sign];
-                lblResult.setText(String.format("%.0f",res));
+                    if(num2 == 0 && sign == 3){
+                        throw new ArithmeticException();
+                    }
+                    double res = (new double[]{num1 + num2, num1 - num2, num1 * num2, num1 / num2})[sign];
+                    lblResult.setText(String.format("%.0f", res));
+                }catch(ArithmeticException a){
+                    JOptionPane.showMessageDialog(null,"You can't divide number by zero!");
+                }catch(Exception a){
+                    JOptionPane.showMessageDialog(null, "Invalid input");
+                }
             }
         });
     }
